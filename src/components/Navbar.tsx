@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Sparkles } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,8 +10,11 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <div className="flex items-center space-x-2">
-          <div className="bg-gradient-to-r from-primary to-secondary rounded-lg w-8 h-8"></div>
-          <span className="text-xl font-bold">MarketPulse</span>
+          <div className="bg-gradient-to-r from-primary to-secondary rounded-lg w-8 h-8 flex items-center justify-center">
+            <Sparkles className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-xl font-bold">e-sights</span>
+          <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-medium">AI</span>
         </div>
 
         {/* Desktop Navigation */}
