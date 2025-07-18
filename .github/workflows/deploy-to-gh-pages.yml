@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20' # Assuming Node.js 20. If you know your specific Node.js version, change it here (e.g., '18', '22').
-          cache: 'bun' # Use Bun for caching dependencies
+          # Removed: cache: 'bun' - as it's not supported by setup-node@v4
 
       - name: Install project dependencies
         run: bun install # Command to install packages using Bun
