@@ -1,0 +1,35 @@
+name: Deploy Lovable-Dev Project to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # This workflow runs when you push to the 'main' branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # The operating system where the build will happen
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4 # Action to get your repository's files
+
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Assuming Node.js 20. If you know your specific Node.js version, change it here (e.g., '18', '22').
+          cache: 'bun' # Use Bun for caching dependencies
+
+      - name: Install project dependencies
+        run: bun install # Command to install packages using Bun
+
+      - name: Build the project for production
+        run: bun run build # Command to build your Vite project for deployment
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3 # Action to push built files to GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub's automatic token for authentication
+          publish_dir: ./dist # The directory containing your compiled website after 'bun run build'
+          publish_branch: gh-pages # This is for Project Pages (yourusername.github.io/lovable-dev). It creates/updates the 'gh-pages' branch.
+          user_name: 'github-actions[bot]' # Recommended for clarity in commit history
+          user_email: 'github-actions[bot]@users.noreply.github.com'
